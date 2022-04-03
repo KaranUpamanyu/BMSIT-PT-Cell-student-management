@@ -297,7 +297,7 @@
                 <!-- Branch -->
                 <div class="col-md-6">
                   <label for="aspiration" class="required form-label">Branch</label>
-                  <select class="form-control" name="branch">
+                  <select class="form-select" name="branch">
                     <option value="CSE">Computer Science</option>
                     <option value="ISE">Information Science</option>
                     <option value="AIML">Artificial Intelligence and Machine Learning</option>
@@ -321,7 +321,7 @@
                   >
                   <input
                     type="email"
-                    class="form-control"
+                    class="form-control mail_input"
                     id="college_email"
                     name="college_email"
                     placeholder="you@example.com"
@@ -339,7 +339,7 @@
                   >
                   <input
                     type="email"
-                    class="form-control"
+                    class="form-control mail_input"
                     id="primary_email"
                     name="primary_email"
                     placeholder="you@example.com"
@@ -357,7 +357,7 @@
                   >
                   <input
                     type="email"
-                    class="form-control"
+                    class="form-control mail_input"
                     id="alternate_email"
                     name="alternate_email"
                     placeholder="you@example.com"
@@ -855,7 +855,7 @@
                   <label for="link_undertaking" class="required form-label">Undertaking Form Link</label>
                   <input
                     type="url"
-                    class="form-control"
+                    class="form-control link_input"
                     id="link_undertaking"
                     name="link_undertaking"
                     placeholder=""
@@ -1068,6 +1068,9 @@
               this.value = this.value.toLocaleUpperCase();
           });
           $('.link_input').keyup(function() {
+              this.value = this.value.toLocaleLowerCase();
+          });
+          $('.mail_input').keyup(function() {
               this.value = this.value.toLocaleLowerCase();
           });
       });

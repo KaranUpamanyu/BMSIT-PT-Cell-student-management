@@ -110,13 +110,29 @@ var insert = function  (con,req) {
   else certificate_vendor = "'" + certificate_vendor + "'";
 
 
+  //if(internship_done=='true') console.log("yeahhh");
+  //else console.log("nooo");
+
+
   //DON'T CHANGE BELOW CODE (FOR NOW)
-  var sql = "insert into ug values ('"+usn+"', '"+full_name+"', '"+branch+"', '"+aspiration+"', '"+mode_of_admission+"', "+percentage_10+", "+percentage_12+", "+cgpa_be+", "+backlog_count+", '"+backlog_subjects+"', "+gap_in_education+", '"+gender+"', '"+dob+"', '"+nationality+"', '"+hometown_name+"', '"+primary_email+"', '"+mobile_number+"', '"+first_name+"', "+middle_name+", "+last_name+", '"+college_email+"', '"+alternate_email+"', '"+emergency_contact+"', '"+fathers_name+"', '"+occupation_father+"', '"+mothers_name+"', '"+occupation_mother+"', '"+puc_12_diploma+"', "+pass_year_10+", "+pass_year_12+", '"+board_10+"', '"+board_12+"', '"+link_10+"', '"+link_12+"', '"+permanent_address+"', '"+permanent_city+"', '"+permanent_postal+"', '"+permanent_contact+"', '"+current_address+"', '"+current_city+"', '"+current_postal+"', '"+cet_comedk_rank+"', "+internship_done+", "+internship_organization+", "+internship_duration_weeks+", '"+internship_start_date+"', '"+internship_end_date+"', "+internship_skills+", "+certification_skills+", "+certification_duration_weeks+", "+certificate_vendor+", '"+link_undertaking+"', '"+link_sgpa_cgpa+"', '"+link_resume+"', '"+link_linkedin+"', '"+link_pan+"', '"+link_aadhar+"', '"+link_photo+"', "+passport+", "+foreign_languages+", null, false, null, null, null, null, null, null, null, null, 0)";
+  var sql = "insert into ug values ('"+usn+"', '"+full_name+"', '"+branch+"', '"+aspiration+"', '"+mode_of_admission+"', "+percentage_10+", "+percentage_12+", "+cgpa_be+", "+backlog_count+", '"+backlog_subjects+"', "+gap_in_education+", '"+gender+"', '"+dob+"', '"+nationality+"', '"+hometown_name+"', '"+primary_email+"', '"+mobile_number+"', '"+first_name+"', "+middle_name+", "+last_name+", '"+college_email+"', '"+alternate_email+"', '"+emergency_contact+"', '"+fathers_name+"', '"+occupation_father+"', '"+mothers_name+"', '"+occupation_mother+"', '"+puc_12_diploma+"', "+pass_year_10+", "+pass_year_12+", '"+board_10+"', '"+board_12+"', '"+link_10+"', '"+link_12+"', '"+permanent_address+"', '"+permanent_city+"', '"+permanent_postal+"', '"+permanent_contact+"', '"+current_address+"', '"+current_city+"', '"+current_postal+"', '"+cet_comedk_rank+"', '"+link_undertaking+"', '"+link_sgpa_cgpa+"', '"+link_resume+"', '"+link_linkedin+"', '"+link_pan+"', '"+link_aadhar+"', '"+link_photo+"', "+passport+", "+foreign_languages+", null, false, null, null, null, null, null, null, null, null, 0)";
   con.query(sql, function (err, result) {
     if (err) throw err;
     else console.log("1 record inserted for "+usn);
     return 1;
   });
+
+
 };
 
+
+
 module.exports = insert;
+
+
+
+/*
+
+"+internship_done+", "+internship_organization+", "+internship_duration_weeks+", '"+internship_start_date+"', '"+internship_end_date+"', "+internship_skills+", "+certification_skills+", "+certification_duration_weeks+", "+certificate_vendor+",
+
+*/
