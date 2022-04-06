@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
+    <!-- Better looking buttons for FILE EXPORT -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.4.0/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
+</head>
+<body>
+    <style>
+        body{
+            margin:10px;
+        }
+        #inputMode {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .select_mode {
+            border: none;
+            background-color: transparent;
+            color: rgb(65, 65, 65);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <div id="inputMode">
+        <form action="admin" method="get">
+            <button type="submit" class="select_mode">All Columns</button>
+        </form>
+        <form action="admin" method="get">
+            <input type="text" name="select_mode" id="select_mode" value="1" hidden>
+            <button type="submit" class="select_mode">Personal Information</button>
+        </form>
+        <form action="admin" method="get">
+            <input type="text" name="select_mode" id="select_mode" value="2" hidden>
+            <button type="submit" class="select_mode">Education</button>
+        </form>
+        <form action="admin" method="get">
+            <input type="text" name="select_mode" id="select_mode" value="3" hidden>
+            <button type="submit" class="select_mode">Offers</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Row</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin" method="post">
+                        <input type=text name="edit_value" id="edit_value">
+                        <input type="text" value="<%= viewMode %>" name="viewMode" hidden>
+                        <input type=text name="edit_field_usn" id="edit_field_usn" hidden>
+                        <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <label for="min_cgpa">Min CGPA</label>
+    <input type="text" id="min_cgpa">
+
+    <label for="min_marks10">Min 10th</label>
+    <input type="text" id="min_marks10">
+
+    <label for="min_marks12">Min 12th</label>
+    <input type="text" id="min_marks12">
+
+    <table id="myTable" class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+            <% for (var [key, value] of Object.entries(rows[1])) { %>
+                <th><%= key %></th>
+            <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < rows.length; i++) { %>
+            <tr>
+              <!-- <td> <%= i %> </td> -->
+              <% for (var [key, value] of Object.entries(rows[i])) { %>
+                <% if (key=="dob") {value = value.toString().slice(4,15);} %>
+                <%# if (key=="dob") {value = value.toISOString().slice(0, 10);} %>
+                <td headers="<%= key %> <%= rows[i].usn %>"><%= value %></td>
+              <% } %>
+            </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <input type="text" value="<%= viewMode %>" id="viewMode" hidden >
+    <input type="text" value="<%= searchParams %>" id="searchParams" hidden>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="table2excel.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- add these dependencies library files-->
+<script src="https://cdn.datatables.net/searchpanes/1.4.0/js/dataTables.searchPanes.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+<!-- add these dependencies to perform FILE EXPORT -->
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+
+
+<script>
+
+    // Edit here for Filters
+
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min_Cgpa = parseInt( $('#min_cgpa').val(), 10 );
+
+            var cgpa_DataColumn = parseFloat( data[3] ) || 0; // use data for the cgpa column
+
+            if (isNaN( min_Cgpa ) || min_Cgpa <= cgpa_DataColumn)
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min_Marks10 = parseInt( $('#min_marks10').val(), 10);
+
+            var marks10_DataColumn  = parseFloat( data[5] ) || 0; // use data for the 10th marks column
+
+            if (isNaN( min_Marks10 ) || min_Marks10 <= marks10_DataColumn)
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min_Marks12 = parseInt( $('#min_marks12').val(), 10);
+
+            var marks12_DataColum  = parseFloat( data[5] ) || 0; // use data for the 12th marks column
+
+            if (isNaN( min_Marks12 ) || min_Marks12 <= marks12_DataColum)
+            {
+                return true;
+            }
+            return false;
+        }
+    );
+
+// End Filters
+
+// Initial config : all columns are visible.
+// dom: 'Pfrtip' - will ensure that the Panes are placed above the DataTable.
+    $(document).ready(function() {
+
+        var tgt = $('#searchParams').val();
+        viewMode = $('#viewMode').val();
+        // switch (viewMode) {
+        //     case '0': tgt = [0,3]; break;
+        //     case '1': tgt = [4,5]; break;
+        // }
+
+        var table = $('#myTable').DataTable( {
+            "scrollX": true,
+            buttons:[
+            {
+                extend: 'searchPanes',
+
+            }, 'copy', 'csv', 'excel'
+        ],
+
+        // Edit here for Active Filters
+        columnDefs:[{
+          searchPanes:{
+            show: true,
+            initCollapsed : true,
+          },
+
+          // Specifiy column number to display it inside SearchPanes
+          targets: tgt
+        }],
+        dom: 'Bfrtip',
+
+        } );
+
+        //new
+        $("td").attr("data-bs-toggle", "modal");
+        $("td").attr("data-bs-target", "#exampleModal");
+
+        $("td").click(function(){
+            console.log("td clicked");
+            var field_usn = $(this).attr("headers");
+            $("#exampleModalLabel").html($(this).html());
+            $("#edit_field_usn").val(field_usn);
+            // $('input[id="edit_value"]').focus();
+            // $("#edit_value").focus();
+        });
+
+        $('#exampleModal').on('shown.bs.modal', function () {
+          $('#edit_value').focus();
+        })
+
+        $(function() {
+            $('input').keyup(function() {
+                this.value = this.value.toLocaleUpperCase();
+            });
+        });
+        //new done
+
+        $('#min_cgpa').keyup( function() {
+            table.draw();
+        } );
+
+        $('#min_marks10').keyup( function() {
+            table.draw();
+        } );
+
+        $('#min_marks12').keyup( function() {
+            table.draw();
+        } );
+
+        // End for Active Filters
+
+        /**
+         * Toggles the visibility of all columns to true
+         * @return {void} Nothing
+         */
+        function makeAllColumnsVisible(){
+            for ( var i=0 ; i<6 ; i++ ) {
+                table.column(i).visible(true, true);
+            }
+            table.columns.adjust().draw(false);
+        }
+
+        /**
+         * Toggles the visibility of all columns in that MODE to true
+         * @param {Array} mode - The array of column numbers to be displayed in a mode
+         * @return {void} Nothing
+         */
+        function toggleColumnsInMode(mode){
+            for (var i=0; i<6; i++) {
+                if(!mode.includes(i) && table.column(i).visible() === true)
+                    table.column(i).visible(false, false);
+                else table.column(i).visible(true, false);
+            }
+            table.columns.adjust().draw(false);
+        }
+
+        // OnClick Event Listener to check which mode is selected
+        document.getElementById('submit').onclick = function() {
+
+            // For each onclick make all columns visible
+            makeAllColumnsVisible();
+
+            var radios = document.getElementsByName('modes');
+
+            // Define modes here
+            var ageMode = [0, 3];
+            var positionMode = [0, 1];
+
+            for(var radio of radios) {
+                if(radio.checked){
+                    if(radio.value === "age"){
+                        toggleColumnsInMode(ageMode);
+                    }
+                    else if(radio.value === "position"){
+                        toggleColumnsInMode(positionMode);
+                    }
+                    else if(radio.value === "default"){
+                        makeAllColumnsVisible();
+                    }
+                }
+            }
+        }
+    } );
+</script>
+</html>

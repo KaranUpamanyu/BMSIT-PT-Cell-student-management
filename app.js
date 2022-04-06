@@ -23,12 +23,21 @@ let con = connect_db();
 
 //routes
 app.get("/",function(req,res){
-  res.sendFile(__dirname+"/views/index.html");
+  res.sendFile(__dirname+"/views/registration_form.html");
 });
 
 app.post("/", function(req,res){
-  insert(con,req);
-  res.send('Check CLI!');
+  insert(con,req,res);
+  // res.send('Check CLI!');
+});
+
+
+app.get("/admin", function(req,res){
+  select(con,req,res);
+});
+
+app.post("/admin", function(req,res){
+  update(con,req,res);
 });
 
 
