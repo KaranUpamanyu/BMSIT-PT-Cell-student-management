@@ -41,6 +41,9 @@ var update = function  (con,req,res) {
     case '3': sql = offers;
               // searchParams = [];
               break;
+    case '4': sql = send_info_tables;
+              // searchParams = [];
+              break;
   }
 
   con.query(sql, function (err, rows, fields) {

@@ -9,6 +9,8 @@ app.use(express.static(__dirname));
 app.set('view engine', 'ejs');
 
 const insert = require('./queries/insert.js');
+const select = require('./queries/select.js');
+const update = require('./queries/update.js');
 
 const connect_db = require('./db_connect.js');
 
