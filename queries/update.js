@@ -23,7 +23,7 @@ var update = function  (con,req,res) {
     if (err) throw err;
   });
 
-  var personal_information = "select usn, full_name, mobile_number, emergency_contact, permanent_contact primary_email, alternate_email, passport, foreign_languages, first_name, middle_name, last_name, permanent_address, permanent_city, permanent_postal, permanent_contact,current_address, current_city, current_postal from ug";
+  var personal_information = "select usn, full_name, branch, mobile_number, emergency_contact, permanent_contact primary_email, alternate_email, passport, foreign_languages, first_name, middle_name, last_name, permanent_address, permanent_city, permanent_postal, permanent_contact,current_address, current_city, current_postal from ug";
 
   var education = "select usn, full_name, cgpa_be, backlog_count, backlog_subjects from ug";
 
