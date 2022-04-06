@@ -603,7 +603,7 @@
                   <label for="percentage_10" class="required form-label">10th %</label>
                   <input
                     type="number"
-                    class="form-control"
+                    class="form-control numeral"
                     id="percentage_10"
                     name="percentage_10"
                     placeholder=""
@@ -620,7 +620,7 @@
                   <label for="percentage_12" class="required form-label">12th/Diploma % </label>
                   <input
                     type="number"
-                    class="form-control"
+                    class="form-control numeral"
                     id="percentage_12"
                     name="percentage_12"
                     placeholder=""
@@ -698,7 +698,7 @@
                   <label for="cgpa_be" class="required form-label">B.E CGPA</label>
                   <input
                     type="number"
-                    class="form-control"
+                    class="form-control numeral"
                     id="cgpa_be"
                     name="cgpa_be"
                     placeholder=""
@@ -1065,6 +1065,7 @@
     <script>
       $(function() {
           $('input').keyup(function() {
+            if (this.hasClass('numeral')) ; else
               this.value = this.value.toLocaleUpperCase();
           });
           $('.link_input').keyup(function() {
