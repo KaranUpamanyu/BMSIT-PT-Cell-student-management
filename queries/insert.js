@@ -1,8 +1,6 @@
 //jshint esversion:6
 
-const res = require("express/lib/response");
-
-var insert = function  (con,req) {
+var insert = function  (con,req,res) {
 
   let usn = req.body.usn,
   full_name = req.body.full_name,
@@ -112,27 +110,57 @@ var insert = function  (con,req) {
   else certificate_vendor = "'" + certificate_vendor + "'";
 
 
+  var error_exist = false;
+
   //DON'T CHANGE BELOW CODE (FOR NOW)
   var sql = "insert into ug values ('"+usn+"', '"+full_name+"', '"+branch+"', '"+aspiration+"', '"+mode_of_admission+"', "+percentage_10+", "+percentage_12+", "+cgpa_be+", "+backlog_count+", '"+backlog_subjects+"', "+gap_in_education+", '"+gender+"', '"+dob+"', '"+nationality+"', '"+hometown_name+"', '"+primary_email+"', '"+mobile_number+"', '"+first_name+"', "+middle_name+", "+last_name+", '"+college_email+"', '"+alternate_email+"', '"+emergency_contact+"', '"+fathers_name+"', '"+occupation_father+"', '"+mothers_name+"', '"+occupation_mother+"', '"+puc_12_diploma+"', "+pass_year_10+", "+pass_year_12+", '"+board_10+"', '"+board_12+"', '"+link_10+"', '"+link_12+"', '"+permanent_address+"', '"+permanent_city+"', '"+permanent_postal+"', '"+permanent_contact+"', '"+current_address+"', '"+current_city+"', '"+current_postal+"', '"+cet_comedk_rank+"', '"+link_undertaking+"', '"+link_sgpa_cgpa+"', '"+link_resume+"', '"+link_linkedin+"', '"+link_pan+"', '"+link_aadhar+"', '"+link_photo+"', "+passport+", "+foreign_languages+", null, false, null, null, null, null, null, null, null, null, 0)";
+
+
+
+
   con.query(sql, function (err, result) {
-    if (err) res.send(err);
-    // if (err) throw(err);
-    else res.write("1 record inserted for "+usn);
-    return 1;
+    try{
+      if (err) throw(err);
+    }catch(ex) {
+      console.error(ex,ex.stack);
+      error_exist = true;
+      res.render('error',{
+        error: ex.sqlMessage,
+      });
+      return;
+    }finally {
+      if(!error_exist && (internship_done=='FALSE'||internship_done=='false'||internship_done=='False'||internship_done=='1')) {
+        console.log("no internship, inserted");
+        res.send("no internships, 1 record inserted");
+      }
+    }
   });
+
+
 
 
   if(internship_done=='TRUE'||internship_done=='true'||internship_done=='True'||internship_done=='1'){
     var sql = "insert into ug_internship values ('"+usn+"', "+internship_organization+", "+internship_duration_weeks+", '"+internship_start_date+"', '"+internship_end_date+"', "+internship_skills+");";
     con.query(sql, function (err, result) {
-      if (err) res.send(err);
-    // if (err) throw(err);
-      else res.write("1 internship inserted for "+usn);
-      return 1;
+      try{
+        if (err) throw(err);
+      }catch(ex) {
+        console.error(ex,ex.stack);
+        error_exist = true;
+        con.query("delete from ug where usn = '"+usn+"';", function (myerror, resultt){if (myerror) throw (myerror);});
+        res.render('error',{
+          error: ex.sqlMessage,
+        });
+        return;
+      }finally {
+        if (!error_exist) {
+          console.log("inserted with internship");
+          res.send("1 record inserted with internship");
+        }
+      }
     });
   }
 
-  res.send();
 };
 
 
