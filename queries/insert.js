@@ -130,8 +130,8 @@ var insert = function  (con,req,res) {
       return;
     }finally {
       if(!error_exist && (internship_done=='FALSE'||internship_done=='false'||internship_done=='False'||internship_done=='1')) {
-        console.log("no internship, inserted");
-        res.send("no internships, 1 record inserted");
+        // console.log("no internship, inserted");
+        res.render('success');
       }
     }
   });
@@ -154,8 +154,8 @@ var insert = function  (con,req,res) {
         return;
       }finally {
         if (!error_exist) {
-          console.log("inserted with internship");
-          res.send("1 record inserted with internship");
+          // console.log("inserted with internship");
+          res.render('success');
         }
       }
     });

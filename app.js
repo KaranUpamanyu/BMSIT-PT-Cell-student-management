@@ -25,7 +25,8 @@ let con = connect_db();
 
 //routes
 app.get("/",function(req,res){
-  res.sendFile(__dirname+"/views/registration_form.html");
+  // res.sendFile(__dirname+"/views/registration_form.html");
+  res.render('registration_form');
 });
 
 app.post("/", function(req,res){

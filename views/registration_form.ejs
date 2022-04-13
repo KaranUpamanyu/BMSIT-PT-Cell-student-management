@@ -66,7 +66,7 @@
                   <label for="full_name" class="required form-label">Full Name</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="full_name"
                     name="full_name"
                     placeholder=""
@@ -82,7 +82,7 @@
                   <label for="first_name" class="required form-label">First Name</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="first_name"
                     name="first_name"
                     placeholder=""
@@ -98,7 +98,7 @@
                   <label for="middle_name" class="form-label">Middle Name<span class="text-muted"> (Optional)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="middle_name"
                     name="middle_name"
                     placeholder=""
@@ -110,7 +110,7 @@
                   <label for="last_name" class="form-label">Last Name<span class="text-muted"> (Optional)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="last_name"
                     name="last_name"
                     placeholder=""
@@ -125,7 +125,7 @@
                   <label for="usn" class="required form-label">USN</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="usn"
                     name="usn"
                     placeholder=""
@@ -174,7 +174,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="nationality"
                     name="nationality"
                     placeholder=""
@@ -192,7 +192,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="hometown_name"
                     name="hometown_name"
                     placeholder=""
@@ -210,7 +210,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="fathers_name"
                     name="fathers_name"
                     placeholder=""
@@ -228,7 +228,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="occupation_father"
                     name="occupation_father"
                     placeholder=""
@@ -246,7 +246,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="mothers_name"
                     name="mothers_name"
                     placeholder=""
@@ -264,7 +264,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="occupation_mother"
                     name="occupation_mother"
                     placeholder=""
@@ -428,10 +428,10 @@
                   <label for="permanent_city" class="required form-label">Permanent City</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="permanent_city"
                     name="permanent_city"
-                    placeholder="bangalore"
+                    placeholder="Bangalore"
                     required
                   />
                   <div class="invalid-feedback">
@@ -474,7 +474,7 @@
                   <label for="current_city " class="required form-label">Current City</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="current_city"
                     name="current_city"
                     placeholder=""
@@ -728,10 +728,10 @@
 
                 <!-- Backlog Subjects -->
                 <div class="col-md-4">
-                  <label for="backlog_subjects" class="form-label">Backlog Subjects</label>
+                  <label for="backlog_subjects" class="form-label">Backlog Subjects<span class="text-muted"> -empty if none</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="backlog_subjects"
                     name="backlog_subjects"
                     placeholder=""
@@ -810,7 +810,7 @@
                   <label for="passport" class="sform-label">Passport No <span class="text-muted"> (Optional)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="passport"
                     name="passport"
                     placeholder=""
@@ -840,7 +840,7 @@
                   <label for="foreign_languages" class="form-label">Foreign Languages</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="foreign_languages"
                     name="foreign_languages"
                     placeholder=""
@@ -911,10 +911,13 @@
 
                 <!-- Internship Organization -->
                 <div class="col-md-4">
-                  <label for="internship_organization" class="form-label">Internship Organizations <span class="text-muted"> separated by semicolon (;)</span></label>
+                  <label for="internship_organization" class="form-label">
+                    Internship Organizations
+                    <!-- <span class="text-muted"> separated by semicolon (;)</span> -->
+                  </label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="internship_organization"
                     name="internship_organization"
                     placeholder=""
@@ -926,7 +929,10 @@
 
                 <!-- Internship Duration -->
                 <div class="col-md-4">
-                  <label for="internship_duration_weeks" class="form-label">Internship durations in weeks <span class="text-muted"> separated by semicolon (;)</span></label>
+                  <label for="internship_duration_weeks" class="form-label">
+                    Internship durations in weeks
+                    <!-- <span class="text-muted"> separated by semicolon (;)</span> -->
+                  </label>
                   <input
                     type="number"
                     class="form-control"
@@ -975,7 +981,7 @@
                   <label for="internship_skills" class="form-label">Skills acquired during internship?  <span class="text-muted"> separated by semicolon (;)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="internship_skills"
                     name="internship_skills"
                     placeholder=""
@@ -994,7 +1000,7 @@
                   <label for="certification_skills" class="form-label">Skills acquired through certification  <span class="text-muted"> separated by semicolon (;)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="certification_skills"
                     name="certification_skills"
                     placeholder=""
@@ -1025,7 +1031,7 @@
                   <label for="certificate_vendor" class="form-label">Certification Vendors <span class="text-muted"> separated by semicolon (;)</span></label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control uppercase"
                     id="certificate_vendor"
                     name="certificate_vendor"
                     placeholder=""
@@ -1042,10 +1048,10 @@
 
               <!-- Submit and Reset -->
               <button class="btn btn-outline-danger text-center" type="reset">
-                Previous
+                Reset
               </button>
               <button class="btn btn-outline-success" type="submit">
-                Next
+                Submit
               </button>
 
             </form>
@@ -1056,7 +1062,7 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 text-muted text-center text-small" style="background-color: #e4ecf5;">
-      <p class="mb-1"> Bmsit 2021</p>
+      <p class="mb-1"> BMSIT 2022</p>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -1064,18 +1070,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       $(function() {
-          $('input').keyup(function() {
-            if (this.hasClass('numeral')) ; else
-              this.value = this.value.toLocaleUpperCase();
-          });
-          $('.link_input').keyup(function() {
-              this.value = this.value.toLocaleLowerCase();
-          });
-          $('.mail_input').keyup(function() {
-              this.value = this.value.toLocaleLowerCase();
+          $('.uppercase').keyup(function() {
+            this.value = this.value.toLocaleUpperCase();
           });
       });
     </script>
-    <script src="form-validation.js"></script>
+    <!-- <script src="views/form-validation.js"></script> -->
+
+    <script>
+
+      (function () {
+        'use strict';
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+      })();
+
+    </script>
   </body>
 </html>
